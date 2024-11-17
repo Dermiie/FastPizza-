@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
-import Cart from './Cart';
+import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
 function CartOverview() {
   return (
-    <div>
-      <p>
+    <div className="p-4 uppercase bg-stone-800 text-stone-200">
+      <p className="space-x-4 font-semibold text-stone-300">
         <span>23 pizzas</span>
         <span>$23.45</span>
       </p>
