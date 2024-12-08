@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
+import Button from "../../ui/Button";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -32,7 +33,7 @@ const fakeCart = [
     totalPrice: 15,
   },
 ];
-
+  
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const formErrors = useActionData();
@@ -49,13 +50,13 @@ function CreateOrder() {
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input type="text" name="customer" className="input" required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input type="tel" name="phone" className="input" required />
           </div>
           {formErrors && <div>{formErrors.phone}</div>}
         </div>
@@ -63,7 +64,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input type="text" name="address" required className="input"/>
           </div>
         </div>
 
@@ -72,6 +73,7 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
+            className="accent-yellow-400 focus:ring focus:ring-yellow-400 focus:ring-offset-2"
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
@@ -80,7 +82,7 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)}></input>
-          <button>{isSubmitting ? "Placing order" : "Order now"}</button>
+          <Button disabled={isSubmitting} >{isSubmitting ? "Placing order" : "Order now"}</Button>
         </div>
       </Form>
     </div>
