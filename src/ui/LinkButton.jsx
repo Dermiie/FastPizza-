@@ -12,7 +12,7 @@ function LinkButton({children, to}) {
   );
 
   return (
-    <Link  className={className}>
+    <Link to={to} className={className}>
     {children}   
     </Link>
   )
