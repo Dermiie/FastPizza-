@@ -43,32 +43,32 @@ function CreateOrder() {
   const cart = fakeCart;
 
   return (
-    <div>
-      <h2>Ready to order? Lets go!</h2>
+    <div className="px-4 py-4">
+      <h2 className="my-8 text-xl font-semibold">Ready to order? Lets go!</h2>
 
       {/* <Form method="POST" action="order/new"> the action prop shows the route the action is cinnected to but it isn't really necessary using react router  */}
-      <Form method="POST">
-        <div>
-          <label>First Name</label>
-          <input type="text" name="customer" className="input" required />
+      <Form method="POST" >
+        <div className="flex flex-col gap-2 mb-5 sm:items-center sm:flex-row">
+          <label className="sm:basis-40">First Name</label>
+          <input type="text" name="customer" className="input grow" required />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input type="tel" name="phone" className="input" required />
-          </div>
-          {formErrors && <div>{formErrors.phone}</div>}
-        </div>
-
-        <div>
-          <label>Address</label>
-          <div>
-            <input type="text" name="address" required className="input"/>
+        <div className="flex flex-col gap-2 mb-5 sm:items-center sm:flex-row">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input type="tel" name="phone" className="w-full input" required />
+          {formErrors && <div className="px-4 py-2 mt-2 text-xs text-red-700 bg-red-100 rounded-md">{formErrors.phone}</div>}
           </div>
         </div>
 
-        <div>
+        <div className="flex flex-col gap-2 mb-5 sm:items-center sm:flex-row">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
+            <input type="text" name="address" required className="w-full input"/>
+          </div>
+        </div>
+
+        <div  className="flex items-center gap-2 mb-5">
           <input
             type="checkbox"
             name="priority"
@@ -77,7 +77,7 @@ function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to give your order priority?</label>
+          <label htmlFor="priority" className="font-semibold">Want to give your order priority?</label>
         </div>
 
         <div>
