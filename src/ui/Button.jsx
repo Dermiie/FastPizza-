@@ -15,10 +15,13 @@ const styles = {
     <Link className={styles[type]} to={to}>{children}</Link>
   )
 
+  if(onClick) return (
+    <button onClick={onClick} className={styles[type]}>{children}</button>
+  )
 
 
   return (
-    <button disabled={disabled} onClick={onClick} className={styles[type]}>{children}</button>
+    <button disabled={disabled} className={styles[type]}>{children}</button>
   )
 }
 

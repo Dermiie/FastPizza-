@@ -39,6 +39,10 @@ const userSlice = createSlice({
 
 })
 
+export function getUsername (state) {
+  return state.user.username
+}
+
 export const {updateName} = userSlice.actions
 
 console.log(userSlice)
