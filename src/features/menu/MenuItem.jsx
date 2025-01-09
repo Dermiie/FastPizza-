@@ -9,7 +9,7 @@ function MenuItem({ pizza }) {
   
   const dispatch = useDispatch()
 
-  const currentQuantity = useSelector(getCurrentQuantityById)
+  const currentQuantity = useSelector(getCurrentQuantityById(id))
 
   console.log(currentQuantity)
 
@@ -39,7 +39,7 @@ function MenuItem({ pizza }) {
         <div className='flex items-center justify-between mt-auto '> 
           {!soldOut ? <p className='text-sm'>{formatCurrency(unitPrice)}</p> : <p className='text-sm font-medium uppercase text-stone-500'>Sold out</p>}
 
-          {inCart && <DeleteItem>Delete</DeleteItem>}
+          {inCart && <DeleteItem pizzaId={id}>Delete</DeleteItem>}
 
           {!soldOut && !inCart && <Button type='small' onClick={handleAddToCart} >Add to cart</Button> }
         </div>
