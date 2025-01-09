@@ -10,4 +10,5 @@ function EmptyCart() {
   );
 }
 
+
 export default EmptyCart;
