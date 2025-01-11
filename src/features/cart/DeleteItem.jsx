@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
-import Button from "./Button"
-import { deleteItem } from "../features/cart/cartSlice"
+import Button from "../../ui/Button"
+import { deleteItem } from "./cartSlice"
 
 function DeleteItem({pizzaId}) {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ function DeleteItem({pizzaId}) {
   }
 
   return (
-    <Button type={'small'} onClick={handleDeleteItem}>Delete</Button>
+    <Button type='small' onClick={handleDeleteItem}>Delete</Button>
   )
 }
 

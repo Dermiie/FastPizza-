@@ -45,6 +45,6 @@ export function getUsername (state) {
 
 export const {updateName} = userSlice.actions
 
-console.log(userSlice)
+
 
 export default userSlice.reducer;
