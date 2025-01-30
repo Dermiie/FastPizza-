@@ -13,6 +13,7 @@ function OrderItem({ item, isLoadingIngredients, ingredients }) {
       </div>
       <p className='text-sm italic capitalize '>{isLoadingIngredients ? 'Loading...' : `${ingredients.join(', ')}`}</p>
     </li>
+    
   );
 }
 
