@@ -13,8 +13,6 @@ function MenuItem({ pizza }) {
 
   const currentQuantity = useSelector(getCurrentQuantityById(id))
 
-  console.log(currentQuantity)
-
   const inCart = currentQuantity > 0
 
   
