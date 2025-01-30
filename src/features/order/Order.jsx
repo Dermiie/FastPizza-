@@ -1,6 +1,6 @@
 // Test ID: IIDSAT
 
-import { useLoaderData } from 'react-router-dom';
+import { useFetcher, useLoaderData } from 'react-router-dom';
 import { getOrder } from '../../services/apiRestaurant';
 import {
   calcMinutesLeft,
@@ -8,6 +8,7 @@ import {
   formatDate,
 } from '../../utils/helpers';
 import OrderItem from './OrderItem';
+import { useEffect } from 'react';
 
 // const order = {
 //   id: 'ABCDEF',
@@ -48,7 +49,7 @@ function Order() {
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const order = useLoaderData();
   const {
-    id,
+    id:  pizzaId,
     status,
     priority,
     priorityPrice,
@@ -58,10 +59,17 @@ function Order() {
   } = order;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
+  const fetcher = useFetcher();
+  const isLoadingIngredients = fetcher.state === 'loading'
+
+  useEffect(function(){
+    if(!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu')
+  }, [fetcher])
+
   return (
     <div className='px-4 py-6 space-y-6'>
       <div className='flex flex-wrap items-center justify-between gap-2'>
-        <h2 className='text-xl font-semibold'>Order #{id} status</h2>
+        <h2 className='text-xl font-semibold'>Order #{pizzaId} status</h2>
 
         <div className='flex items-center gap-2'>
           {priority && <span className='px-3 py-1 text-sm tracking-wide text-red-100 uppercase bg-red-600 rounded-full '>Priority</span>}
@@ -79,7 +87,7 @@ function Order() {
       </div>
 
       <ul className='my-2 border-t border-b divide-y border-stone-300 divide-stone-300'>
-        {cart.map(item => <OrderItem item={item} key={item.id}></OrderItem>)}
+        {cart.map(item => <OrderItem item={item} key={item.pizzaId} isLoadingIngredients={isLoadingIngredients} ingredients={fetcher?.data?.find((el)=> el.id === item.pizzaId)?.ingredients ?? []}></OrderItem>)}
       </ul>
 
       <div className='px-4 py-6 space-y-2 bg-stone-300'>
